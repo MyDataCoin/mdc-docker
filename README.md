@@ -1,7 +1,7 @@
 # mdc-docker
 Here is the docker-compose.yml file, which is required if you're joining us as a DataHolder.
 
-1) git clone https://github.com/Maksat-luci/mdc-docker.git
+1) git clone https://github.com/MyDataCoin/mdc-docker
 2) 1. open docker-compose.yml file using nano
 
         **nano docker-compose.yml**
