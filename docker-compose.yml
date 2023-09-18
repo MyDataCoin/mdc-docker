@@ -1,17 +1,23 @@
 version: '3'
 services:
   watchtower:
-    image: containrrr/watchtower
+    image: containrrr/watchtower:1.5.3
     container_name: watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: --interval 300
+    command: --interval 30 --scope mdcscope --cleanup
+    labels:
+      - "com.centurylinklabs.watchtower.scope=mdcscope"
+    restart: always
+    ports:
+      - 8080:8080
     networks:
       - myappnetwork
     depends_on:
-      - python
+      - python-csv
 
-  python:
+
+  python-csv:
     image: amaymon8/mdc-python-csv:latest
     container_name: python-csv
     ports:
@@ -20,9 +26,15 @@ services:
       - myappnetwork
     environment:
       - AUTH_TOKEN=enter your token here
+      - AUTH_TOKEN=maxsimus
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=bridge-db      
     depends_on:
       - db
     restart: always
+    labels:
+      - "com.centurylinklabs.watchtower.scope=myscope"
     command: bash -c "sleep 10 && alembic upgrade head && gunicorn -b 0.0.0.0:8000 server:app"
   db:
     image: postgres:latest
