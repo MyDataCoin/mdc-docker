@@ -26,7 +26,6 @@ services:
       - myappnetwork
     environment:
       - AUTH_TOKEN=enter your token here
-      - AUTH_TOKEN=maxsimus
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=bridge-db      
