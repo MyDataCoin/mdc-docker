@@ -34,7 +34,7 @@ services:
     restart: always
     labels:
       - "com.centurylinklabs.watchtower.scope=mdcscope"
-    command: bash -c "sleep 10 && alembic upgrade head && gunicorn -b 0.0.0.0:8000 server:app"
+    command: bash -c "sleep 10 && alembic upgrade head && gunicorn --workers=4 -b 0.0.0.0:8000 server:app"
   db:
     image: postgres:15
     restart: always
