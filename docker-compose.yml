@@ -28,7 +28,11 @@ services:
       - AUTH_TOKEN=enter your token here
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=bridge-db      
+      - POSTGRES_DB=bridge-db
+       
+      #CAUTION, these arguments cannot be changed!
+      - dbHost=db
+      - dbPort=5432     
     depends_on:
       - db
     restart: always
